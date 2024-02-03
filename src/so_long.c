@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 	game.map.players = 0;
 	game.mlx = mlx_init();
 	read_map(&game, argv[1]);
-	mlx_hook(game.win, 2, 1L<<0, close, &game);
+	mlx_hook(game.win, 2, 1L<<0, move_player, &game);
 	return (0);
 }

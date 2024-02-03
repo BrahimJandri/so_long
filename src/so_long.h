@@ -99,9 +99,8 @@ void			draw_player(t_game *game, int height, int width);
 void			draw_floor(t_game *game, int height, int width);
 void			draw_exit(t_game *game, int height, int width);
 void			draw_wall(t_game *game, int height, int width);
-// int				move_player(t_game *game, int keycode);
-// int 			is_valid_move(t_game *game, int x, int y);
-int				ft_close(int keycode, t_game *game);
+int				move_player(t_game *game, int keycode);
+int 			is_valid_move(t_game *game, int x, int y);
 
 char			*get_next_line(int fd);
 int				ft_strllen(char *str);
