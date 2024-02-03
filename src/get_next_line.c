@@ -6,11 +6,11 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:08:43 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/02 10:17:48 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/03 10:21:23 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 char	*ft_first_line(int fd, char *str)
 {

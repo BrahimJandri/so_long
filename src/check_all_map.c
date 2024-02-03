@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:05 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/02 11:31:07 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/03 12:10:59 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void	check_border_map(t_game *game)
 	j = game->map.y - 1;
 	while (i < game->map.x)
 	{
-		if(game->map.all_map[0][0] == '\n')
+		if (game->map.all_map[0][0] == '\n')
 			error_msg("Error\nMap has a new line first", game);
-		else if (game->map.all_map[i][0] != WALL || game->map.all_map[i][j] != WALL)
+		else if (game->map.all_map[i][0] != WALL
+			|| game->map.all_map[i][j] != WALL)
 			error_msg("Error\nMap is not closed missing walls rows", game);
 		i++;
 	}
@@ -49,11 +50,6 @@ void	count_map_params(t_game *game)
 	int	i;
 	int	j;
 
-	game->map.exit = 0;
-	game->map.floor = 0;
-	game->map.coins = 0;
-	game->map.players = 0;
-	
 	i = 0;
 	while (i < game->map.x)
 	{
@@ -78,8 +74,8 @@ void	count_map_params(t_game *game)
 	}
 }
 
-void check_map_params(t_game *game)
-{	
+void	check_map_params(t_game *game)
+{
 	if (game->map.exit != 1 || game->map.players != 1 || game->map.coins == 0
 		|| game->map.floor == 0)
 		error_msg("Error\nMap params is not valid", game);
