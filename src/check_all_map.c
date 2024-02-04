@@ -6,16 +6,15 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:05 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/03 12:10:59 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/04 11:37:55 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_msg(char *msg, t_game *game)
+int	error_msg(char *msg)
 {
 	ft_printf("%s\n", msg);
-	free(game->map.all_map);
 	exit(1);
 }
 
@@ -25,22 +24,21 @@ void	check_border_map(t_game *game)
 	int	j;
 
 	i = 0;
-	j = game->map.y - 1;
-	while (i < game->map.x)
+	j = game->map_y - 1;
+	while (i < game->map_x)
 	{
-		if (game->map.all_map[0][0] == '\n')
-			error_msg("Error\nMap has a new line first", game);
-		else if (game->map.all_map[i][0] != WALL
-			|| game->map.all_map[i][j] != WALL)
-			error_msg("Error\nMap is not closed missing walls rows", game);
+		if (game->map[0][0] == '\n')
+			error_msg("Error\nMap has a new line first");
+		else if (game->map[i][0] != WALL || game->map[i][j] != WALL)
+			error_msg("Error\nMap is not closed missing walls rows");
 		i++;
 	}
 	i = 0;
-	j = game->map.x - 1;
-	while (i < game->map.y)
+	j = game->map_x - 1;
+	while (i < game->map_y)
 	{
-		if (game->map.all_map[0][i] != WALL || game->map.all_map[j][i] != WALL)
-			error_msg("Error\nMap is not closed missing walls columns", game);
+		if (game->map[0][i] != WALL || game->map[j][i] != WALL)
+			error_msg("Error\nMap is not closed missing walls columns");
 		i++;
 	}
 }
@@ -51,23 +49,23 @@ void	count_map_params(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->map.x)
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < game->map.y)
+		while (j < game->map_y)
 		{
-			if (game->map.all_map[i][j] == 'E')
-				game->map.exit++;
-			else if (game->map.all_map[i][j] == 'P')
+			if (game->map[i][j] == 'E')
+				game->map_exit++;
+			else if (game->map[i][j] == 'P')
 			{
-				game->player.x = i;
-				game->player.y = j;
-				game->map.players++;
+				game->player_x = i;
+				game->player_y = j;
+				game->map_player++;
 			}
-			else if (game->map.all_map[i][j] == 'C')
-				game->map.coins++;
-			else if (game->map.all_map[i][j] == '0')
-				game->map.floor++;
+			else if (game->map[i][j] == 'C')
+				game->map_coins++;
+			else if (game->map[i][j] == '0')
+				game->map_floor++;
 			j++;
 		}
 		i++;
@@ -76,7 +74,9 @@ void	count_map_params(t_game *game)
 
 void	check_map_params(t_game *game)
 {
-	if (game->map.exit != 1 || game->map.players != 1 || game->map.coins == 0
-		|| game->map.floor == 0)
-		error_msg("Error\nMap params is not valid", game);
+	if (game->map_exit != 1 || game->map_player != 1 || game->map_coins == 0
+		|| game->map_floor == 0)
+		error_msg("Error\nMap params is not valid");
 }
+
+// void check_canreach(t_game )

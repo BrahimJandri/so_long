@@ -6,16 +6,16 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:00:02 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/03 12:10:48 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/04 12:12:39 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_open(int fd, t_game *game)
+void	error_open(int fd)
 {
 	if (fd == -1)
-		error_msg("Error opening file", game);
+		error_msg("Error opening file");
 }
 
 int	contline(int fd)
@@ -42,16 +42,16 @@ void	fill_map(t_game *game, char *argv)
 
 	i = 0;
 	fd = open(argv, O_RDONLY);
-	error_open(fd, game);
-	game->map.all_map = malloc(sizeof(char *) * (game->map.x + 1));
-	while (i < game->map.x)
+	error_open(fd);
+	game->map = malloc(sizeof(char *) * (game->map_x + 1));
+	while (i < game->map_x)
 	{
 		line = get_next_line(fd);
-		game->map.all_map[i] = ft_strdup(line);
+		game->map[i] = ft_strdup(line);
 		free(line);
 		i++;
 	}
-	game->map.all_map[i] = NULL;
+	game->map[i] = NULL;
 	close(fd);
 }
 
@@ -60,19 +60,20 @@ int	read_map(t_game *game, char *argv)
 	int	fd;
 
 	fd = open(argv, O_RDONLY);
-	error_open(fd, game);
-	game->map.x = contline(fd);
+	error_open(fd);
+	game->map_x = contline(fd);
 	close(fd);
 	fd = open(argv, O_RDONLY);
-	error_open(fd, game);
-	game->map.y = ft_strlen(get_next_line(fd)) - 1;
+	error_open(fd);
+	game->map_y = ft_strlen(get_next_line(fd)) - 1;
 	close(fd);
-	game->win = mlx_new_window(game->mlx, 64 * game->map.y, 64 * game->map.x,
+	game->win = mlx_new_window(game->mlx, 64 * game->map_y, 64 * game->map_x,
 			"so_long");
 	fill_map(game, argv);
-	if (!game->map.all_map)
-		error_msg("Memory allocation error", game);
+	if (!game->map)
+		error_msg("Memory allocation error");
 	map_run(game);
+	mlx_hook(game->win, 2, 1L<<0, move_game, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

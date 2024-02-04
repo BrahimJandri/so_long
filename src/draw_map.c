@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:59:56 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/03 11:04:28 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/04 11:36:34 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	draw_coins(t_game *game, int height, int width)
 	int	j;
 
 	i = 0;
-	while (i < game->map.x)
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < game->map.y)
+		while (j < game->map_y)
 		{
-			if (game->map.all_map[i][j] == 'C')
+			if (game->map[i][j] == 'C')
 			{
-				game->param.coin = mlx_xpm_file_to_image(game->mlx,
-						COINS_SPRITE, &height, &width);
-				mlx_put_image_to_window(game->mlx, game->win, game->param.coin,
-					j * 64, i * 64);
+				game->coin = mlx_xpm_file_to_image(game->mlx, COINS_SPRITE,
+						&height, &width);
+				mlx_put_image_to_window(game->mlx, game->win, game->coin, j
+					* 64, i * 64);
 			}
 			j++;
 		}
@@ -48,17 +48,17 @@ void	draw_exit(t_game *game, int height, int width)
 	int	j;
 
 	i = 0;
-	while (i < game->map.x)
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < game->map.y)
+		while (j < game->map_y)
 		{
-			if (game->map.all_map[i][j] == 'E')
+			if (game->map[i][j] == 'E')
 			{
-				game->param.exit = mlx_xpm_file_to_image(game->mlx, EXIT_SPRITE,
+				game->exit = mlx_xpm_file_to_image(game->mlx, EXIT_SPRITE,
 						&height, &width);
-				mlx_put_image_to_window(game->mlx, game->win, game->param.exit,
-					j * 64, i * 64);
+				mlx_put_image_to_window(game->mlx, game->win, game->exit, j
+					* 64, i * 64);
 			}
 			j++;
 		}
@@ -72,17 +72,17 @@ void	draw_player(t_game *game, int height, int width)
 	int	j;
 
 	i = 0;
-	while (i < game->map.x)
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < game->map.y)
+		while (j < game->map_y)
 		{
-			if (game->map.all_map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 			{
-				game->param.player = mlx_xpm_file_to_image(game->mlx,
-						PLAYER_SPRITE, &height, &width);
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->param.player, j * 64, i * 64);
+				game->player = mlx_xpm_file_to_image(game->mlx, PLAYER_SPRITE,
+						&height, &width);
+				mlx_put_image_to_window(game->mlx, game->win, game->player, j
+					* 64, i * 64);
 			}
 			j++;
 		}
@@ -96,17 +96,17 @@ void	draw_floor(t_game *game, int height, int width)
 	int	j;
 
 	i = 0;
-	while (i < game->map.x)
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < game->map.y)
+		while (j < game->map_y)
 		{
-			if (game->map.all_map[i][j] == '0')
+			if (game->map[i][j] == '0')
 			{
-				game->param.floor = mlx_xpm_file_to_image(game->mlx,
-						FLOOR_SPRITE, &height, &width);
-				mlx_put_image_to_window(game->mlx, game->win, game->param.floor,
-					j * 64, i * 64);
+				game->floor = mlx_xpm_file_to_image(game->mlx, FLOOR_SPRITE,
+						&height, &width);
+				mlx_put_image_to_window(game->mlx, game->win, game->floor, j
+					* 64, i * 64);
 			}
 			j++;
 		}
@@ -120,17 +120,17 @@ void	draw_wall(t_game *game, int height, int width)
 	int	j;
 
 	i = 0;
-	while (i < game->map.x)
+	while (i < game->map_x)
 	{
 		j = 0;
-		while (j < game->map.y)
+		while (j < game->map_y)
 		{
-			if (game->map.all_map[i][j] == '1')
+			if (game->map[i][j] == '1')
 			{
-				game->param.wall = mlx_xpm_file_to_image(game->mlx, WALL_SPRITE,
+				game->wall = mlx_xpm_file_to_image(game->mlx, WALL_SPRITE,
 						&height, &width);
-				mlx_put_image_to_window(game->mlx, game->win, game->param.wall,
-					j * 64, i * 64);
+				mlx_put_image_to_window(game->mlx, game->win, game->wall, j
+					* 64, i * 64);
 			}
 			j++;
 		}
