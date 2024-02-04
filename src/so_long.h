@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/04 12:09:39 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/04 17:52:18 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define Q 113
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -43,9 +44,12 @@
 
 # define WALL_SPRITE "../Textures/wall.xpm"
 # define FLOOR_SPRITE "../Textures/floor.xpm"
-# define PLAYER_SPRITE "../Textures/player.xpm"
-# define COINS_SPRITE "../Textures/coin.xpm"
+# define COINS_SPRITE "../Textures/coins.xpm"
 # define EXIT_SPRITE "../Textures/exit.xpm"
+# define P_FROTN "../Textures/p_front.xpm"
+# define P_LEFT "../Textures/p_left.xpm"
+# define P_RIGHT "../Textures/p_right.xpm"
+# define P_BACK "../Textures/p_back.xpm"
 
 typedef struct s_game
 {
@@ -63,10 +67,17 @@ typedef struct s_game
 	int		map_floor;
 	int		map_player;
 	void	*exit;
-	void	*player;
+	void	*p_front;
+	void	*p_left;
+	void	*p_back;
+	void	*p_right;
 	void	*coin;
 	void	*floor;
 	void	*wall;
+	int		width;
+	int		height;
+	int		new_x;
+	int		new_y;
 }			t_game;
 
 void		check_map_params(t_game *game);
@@ -75,13 +86,17 @@ void		check_border_map(t_game *game);
 int			error_msg(char *msg);
 int			read_map(t_game *game, char *argv);
 void		map_run(t_game *game);
-void		draw_coins(t_game *game, int height, int width);
-void		draw_player(t_game *game, int height, int width);
-void		draw_floor(t_game *game, int height, int width);
-void		draw_exit(t_game *game, int height, int width);
-void		draw_wall(t_game *game, int height, int width);
+void		draw_coins(t_game *game);
+void		draw_player(t_game *game);
+void		draw_floor(t_game *game);
+void		draw_exit(t_game *game);
+void		draw_wall(t_game *game);
 int			check_path(const char *filename);
-int 		move_game(int keycode, t_game *game);
+int			move_game(int keycode, t_game *game);
+void		free_game(t_game *game);
+void		move_updown(int keycode, t_game *game);
+void		move_leftright(int keycode, t_game *game);
+void		put_imgleft(t_game *game);
 
 
 char		*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:00:02 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/04 12:12:39 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/04 16:41:58 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	contline(int fd)
 		free(line);
 		i++;
 	}
+	free(line);
 	return (i);
 }
 
@@ -73,24 +74,19 @@ int	read_map(t_game *game, char *argv)
 	if (!game->map)
 		error_msg("Memory allocation error");
 	map_run(game);
-	mlx_hook(game->win, 2, 1L<<0, move_game, game);
+	mlx_hook(game->win, 2, 1L << 0, move_game, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
 
 void	map_run(t_game *game)
 {
-	int	height;
-	int	width;
-
-	height = 64;
-	width = 64;
 	check_border_map(game);
 	count_map_params(game);
 	check_map_params(game);
-	draw_coins(game, height, width);
-	draw_player(game, height, width);
-	draw_floor(game, height, width);
-	draw_exit(game, height, width);
-	draw_wall(game, height, width);
+	draw_coins(game);
+	draw_player(game);
+	draw_floor(game);
+	draw_exit(game);
+	draw_wall(game);
 }

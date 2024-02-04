@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:08:43 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/03 10:21:23 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/04 16:35:19 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ char	*ft_next_line(char *str)
 		i++;
 	next_line = malloc(sizeof(char) * (i + 2));
 	if (!next_line)
+	{
+		free(next_line);
 		return (NULL);
+	}
 	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
