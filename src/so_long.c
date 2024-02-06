@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/04 16:33:41 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/05 17:22:32 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	main(int argc, char **argv)
 	game.moves = 0;
 	game.height = 64;
 	game.width = 64;
+	game.coins_reach = 0;
+	game.exit_reach = 0;
+	game.count_coins = 0;
 	game.mlx = mlx_init();
 	read_map(&game, argv[1]);
-	free_game(&game);
 	return (0);
 }

@@ -7,8 +7,8 @@ RM = rm -f
 AR = ar rcs
 LIBFT = ../libft/libft.a
 
-SRC = check_all_map.c draw_map.c read_map.c so_long.c get_next_line.c get_next_line_utils.c events.c \
-	free_game.c
+SRC = check_all_map.c draw_map.c read_map.c so_long.c get_next_line.c get_next_line_utils.c events.c can_reach.c \
+	free_game.c destroy_game.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

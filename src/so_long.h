@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/04 17:52:18 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/06 09:35:43 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ typedef struct s_game
 	int		height;
 	int		new_x;
 	int		new_y;
+	int		**visited;
+	int		coins_reach;
+	int		exit_reach;
+	int		color;
+	char	*move_w;
+	int		count_coins;
 }			t_game;
 
 void		check_map_params(t_game *game);
@@ -97,7 +103,13 @@ void		free_game(t_game *game);
 void		move_updown(int keycode, t_game *game);
 void		move_leftright(int keycode, t_game *game);
 void		put_imgleft(t_game *game);
-
+void		can_reach(int x, int y, t_game *game);
+void		fill_visited(t_game *game);
+int			is_valid(int x, int y, t_game *game);
+void		is_recheable(t_game *game);
+void		put_imgup(t_game *game);
+void 		count_coins(t_game *game);
+void 		destroy_game(t_game *game);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:05 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/04 11:37:55 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/05 15:05:18 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,3 @@ void	check_map_params(t_game *game)
 		|| game->map_floor == 0)
 		error_msg("Error\nMap params is not valid");
 }
-
-// void check_canreach(t_game )
