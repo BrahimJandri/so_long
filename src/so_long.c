@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/10 14:59:48 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/10 15:12:35 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	error_msg(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-int check_path(const char *filename)
+int	check_path(const char *filename)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(filename);
 	if (len >= 4 && ft_strncmp(filename + len - 4, ".ber", 4) == 0)
@@ -29,13 +29,14 @@ int check_path(const char *filename)
 		return (0);
 }
 
-void free_all(t_game *game)
+void	free_all(t_game *game)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (game->map[i])
 	{
 		free(game->map[i]);
-		// free(game->visited[i]);
 		i++;
 	}
 	i = 0;
@@ -47,15 +48,14 @@ void free_all(t_game *game)
 	free(game->map);
 	free(game);
 	free(game->visited);
-	
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)malloc(sizeof(t_game));
-	if(!game)
+	if (!game)
 	{
 		free(game);
 		exit(EXIT_FAILURE);
@@ -69,13 +69,13 @@ int main(int argc, char **argv)
 	game->width = 64;
 	game->mlx = mlx_init();
 	ft_read_map(game, argv[1]);
-    game->win = mlx_new_window(game->mlx, 64 * game->map_y, 64 * game->map_x, "so_long");
+	game->win = mlx_new_window(game->mlx, 64 * game->map_y, 64 * game->map_x,
+			"so_long");
 	map_run(game);
 	mlx_hook(game->win, 2, 1L << 0, move_game, game);
 	mlx_loop(game->mlx);
 	mlx_destroy_window(game->mlx, game->win);
-    mlx_destroy_display(game->mlx);
-
+	mlx_destroy_display(game->mlx);
 	free_all(game);
 	destroy_game(game);
 	return (0);

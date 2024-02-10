@@ -100,9 +100,9 @@ void		fill_visited(t_game *game);
 int			is_valid(int x, int y, t_game *game);
 void		is_recheable(t_game *game);
 void		put_imgup(t_game *game);
-void 		destroy_game(t_game *game);
-void    	ft_check_rectungle(t_game *game);
-void 		ft_fill_map(t_game *game, int fd);
+void		destroy_game(t_game *game);
+void		ft_check_rectungle(t_game *game);
+void		ft_fill_map(t_game *game, int fd);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);
