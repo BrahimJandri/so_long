@@ -1,8 +1,7 @@
 NAME = so_long
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-MLXFLAGS = -L minilibx -lmlx -lm -lX11 -lXext -lbsd
-MINILIBX = ../minilibx/libmlx.a
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+MLXFLAGS = -L../minilibx -lmlx -lm -lX11 -lXext
 RM = rm -f
 AR = ar rcs
 LIBFT = ../libft/libft.a
@@ -15,7 +14,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME) 
+	$(CC) $(OBJ) $(LIBFT) $(MLXFLAGS) $(CFLAGS) -o $(NAME) 
 clean:
 	$(MAKE) clean -C ../libft
 	$(RM) $(OBJ)

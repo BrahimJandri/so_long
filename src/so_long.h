@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/06 09:35:43 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/10 14:54:16 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@
 #  define BUFFER_SIZE 1
 # endif
 
-# define WALL '1'
-# define FLOOR '0'
-# define COINS 'C'
-# define PLAYER 'P'
-# define EXIT 'E'
-
 # define WALL_SPRITE "../Textures/wall.xpm"
 # define FLOOR_SPRITE "../Textures/floor.xpm"
 # define COINS_SPRITE "../Textures/coins.xpm"
@@ -61,11 +55,9 @@ typedef struct s_game
 	int		map_y;
 	int		player_x;
 	int		player_y;
-	int		map_coins;
-	int		map_exit;
-	int		map_wall;
-	int		map_floor;
-	int		map_player;
+	int		coins_c;
+	int		exit_c;
+	int		player_c;
 	void	*exit;
 	void	*p_front;
 	void	*p_left;
@@ -86,11 +78,11 @@ typedef struct s_game
 	int		count_coins;
 }			t_game;
 
-void		check_map_params(t_game *game);
-void		count_map_params(t_game *game);
-void		check_border_map(t_game *game);
+void		ft_check_params(t_game *game);
+void		ft_count_map_params(t_game *game);
+void		ft_check_border_map(t_game *game);
 int			error_msg(char *msg);
-int			read_map(t_game *game, char *argv);
+void		ft_read_map(t_game *game, char *str);
 void		map_run(t_game *game);
 void		draw_coins(t_game *game);
 void		draw_player(t_game *game);
@@ -108,8 +100,9 @@ void		fill_visited(t_game *game);
 int			is_valid(int x, int y, t_game *game);
 void		is_recheable(t_game *game);
 void		put_imgup(t_game *game);
-void 		count_coins(t_game *game);
 void 		destroy_game(t_game *game);
+void    	ft_check_rectungle(t_game *game);
+void 		ft_fill_map(t_game *game, int fd);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/06 09:35:24 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/10 12:50:22 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,25 @@
 int	move_game(int keycode, t_game *game)
 {
 	if (keycode == ESC || keycode == Q)
-		destroy_game(game);
-	if ((game->map[game->player_x][game->player_y] == EXIT) && (game->coins_reach == game->map_coins))
 	{
-		
-			mlx_destroy_window(game->mlx, game->win);
-			exit(0);
+		mlx_destroy_window(game->mlx, game->win);
+		exit(0);
 	}
 	else
 	{
 		move_leftright(keycode, game);
 		move_updown(keycode, game);
+	}
+	if (game->map[game->player_x][game->player_y] == 'C')
+	{
+		game->count_coins++;
+		game->map[game->player_x][game->player_y] = '0';
+	}
+	
+	if ((game->map[game->player_x][game->player_y] == 'E') && (game->coins_c == game->count_coins))
+	{
+			mlx_destroy_window(game->mlx, game->win);
+			exit(0);
 	}
 	return (0);
 }
@@ -35,18 +43,21 @@ void	move_updown(int keycode, t_game *game)
 	game->new_x = game->player_x;
 	game->new_y = game->player_y;
 	if ((keycode == DOWN || keycode == S) && (game->map[game->player_x \
-			+ 1][game->player_y] != WALL))
+			+ 1][game->player_y] != '1'))
 	{
-		game->player_x += 1;
-		game->moves++;
-		ft_printf("Moves = %d\n", game->moves);
-		mlx_put_image_to_window(game->mlx, game->win, game->floor, game->new_y
-			* 64, game->new_x * 64);
-		mlx_put_image_to_window(game->mlx, game->win, game->p_front,
-			game->player_y * 64, game->player_x * 64);
+		if(game->map[game->player_x + 1][game->player_y] != 'E')
+		{
+			game->player_x += 1;
+			game->moves++;
+			ft_printf("Moves = %d\n", game->moves);
+			mlx_put_image_to_window(game->mlx, game->win, game->floor, game->new_y
+				* 64, game->new_x * 64);
+			mlx_put_image_to_window(game->mlx, game->win, game->p_front,
+				game->player_y * 64, game->player_x * 64);
+		}
 	}
 	if ((keycode == UP || keycode == W) && (game->map[game->player_x \
-			- 1][game->player_y] != WALL))
+			- 1][game->player_y] != '1'))
 	{
 		game->player_x -= 1;
 		game->moves++;
@@ -60,7 +71,7 @@ void	move_leftright(int keycode, t_game *game)
 	game->new_x = game->player_x;
 	game->new_y = game->player_y;
 	if ((keycode == RIGHT || keycode == D)
-		&& (game->map[game->player_x][game->player_y + 1] != WALL))
+		&& (game->map[game->player_x][game->player_y + 1] != '1'))
 	{
 		game->player_y += 1;
 		game->moves++;
@@ -71,9 +82,10 @@ void	move_leftright(int keycode, t_game *game)
 			* 64, game->new_x * 64);
 		mlx_put_image_to_window(game->mlx, game->win, game->p_right,
 			game->player_y * 64, game->player_x * 64);
+
 	}
 	if ((keycode == LEFT || keycode == A)
-		&& (game->map[game->player_x][game->player_y - 1] != WALL))
+		&& (game->map[game->player_x][game->player_y - 1] != '1'))
 	{
 		game->player_y -= 1;
 		game->moves++;
@@ -90,6 +102,7 @@ void	put_imgleft(t_game *game)
 		game->new_x * 64);
 	mlx_put_image_to_window(game->mlx, game->win, game->p_left, game->player_y
 		* 64, game->player_x * 64);
+
 }
 
 void	put_imgup(t_game *game)
@@ -100,12 +113,5 @@ void	put_imgup(t_game *game)
 		game->new_x * 64);
 	mlx_put_image_to_window(game->mlx, game->win, game->p_back, game->player_y
 		* 64, game->player_x * 64);
-}
-void count_coins(t_game *game)
-{
-	if(game->map[game->player_x][game->player_y] == COINS)
-	{
-		ft_printf("game->count_coins == %d\n\n", game->count_coins);
-		game->count_coins++;
-	}
+	
 }

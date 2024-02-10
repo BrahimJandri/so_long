@@ -6,15 +6,21 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/05 17:22:32 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/10 14:59:48 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_path(const char *filename)
+int	error_msg(char *msg)
 {
-	size_t	len;
+	ft_printf("%s\n", msg);
+	exit(EXIT_FAILURE);
+}
+
+int check_path(const char *filename)
+{
+	size_t len;
 
 	len = ft_strlen(filename);
 	if (len >= 4 && ft_strncmp(filename + len - 4, ".ber", 4) == 0)
@@ -23,25 +29,54 @@ int	check_path(const char *filename)
 		return (0);
 }
 
-int	main(int argc, char **argv)
+void free_all(t_game *game)
 {
-	t_game	game;
+	int i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		// free(game->visited[i]);
+		i++;
+	}
+	i = 0;
+	while (game->visited[i])
+	{
+		free(game->visited[i]);
+		i++;
+	}
+	free(game->map);
+	free(game);
+	free(game->visited);
+	
+}
 
+int main(int argc, char **argv)
+{
+	t_game *game;
+
+	game = (t_game *)malloc(sizeof(t_game));
+	if(!game)
+	{
+		free(game);
+		exit(EXIT_FAILURE);
+	}
 	if (argc != 2)
 		error_msg("Error\nInvalid number of arguments");
 	else if (!check_path(argv[1]))
 		error_msg("Error\nInvalid Extension of map Should be .ber");
-	game.map_exit = 0;
-	game.map_floor = 0;
-	game.map_coins = 0;
-	game.map_player = 0;
-	game.moves = 0;
-	game.height = 64;
-	game.width = 64;
-	game.coins_reach = 0;
-	game.exit_reach = 0;
-	game.count_coins = 0;
-	game.mlx = mlx_init();
-	read_map(&game, argv[1]);
+	ft_memset(game, 0, sizeof(t_game));
+	game->height = 64;
+	game->width = 64;
+	game->mlx = mlx_init();
+	ft_read_map(game, argv[1]);
+    game->win = mlx_new_window(game->mlx, 64 * game->map_y, 64 * game->map_x, "so_long");
+	map_run(game);
+	mlx_hook(game->win, 2, 1L << 0, move_game, game);
+	mlx_loop(game->mlx);
+	mlx_destroy_window(game->mlx, game->win);
+    mlx_destroy_display(game->mlx);
+
+	free_all(game);
+	destroy_game(game);
 	return (0);
 }
