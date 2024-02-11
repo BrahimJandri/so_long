@@ -7,14 +7,14 @@ AR = ar rcs
 LIBFT = ../libft/libft.a
 
 SRC = check_all_map.c draw_map.c read_map.c so_long.c get_next_line.c get_next_line_utils.c events.c can_reach.c \
-	free_game.c destroy_game.c
+	free_game.c ft_put_img.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
-	$(CC) $(OBJ) $(LIBFT) $(MLXFLAGS) $(CFLAGS) -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) $(LIBFT) -o $(NAME)
 clean:
 	$(MAKE) clean -C ../libft
 	$(RM) $(OBJ)

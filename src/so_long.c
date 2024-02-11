@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/10 15:12:35 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/11 15:26:35 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	if (!game)
 	{
 		free(game);
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	if (argc != 2)
 		error_msg("Error\nInvalid number of arguments");
@@ -67,16 +67,12 @@ int	main(int argc, char **argv)
 	ft_memset(game, 0, sizeof(t_game));
 	game->height = 64;
 	game->width = 64;
-	game->mlx = mlx_init();
 	ft_read_map(game, argv[1]);
+	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, 64 * game->map_y, 64 * game->map_x,
 			"so_long");
 	map_run(game);
 	mlx_hook(game->win, 2, 1L << 0, move_game, game);
 	mlx_loop(game->mlx);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free_all(game);
-	destroy_game(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/10 14:54:16 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:31:37 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,21 @@ void		draw_wall(t_game *game);
 int			check_path(const char *filename);
 int			move_game(int keycode, t_game *game);
 void		free_game(t_game *game);
-void		move_updown(int keycode, t_game *game);
-void		move_leftright(int keycode, t_game *game);
-void		put_imgleft(t_game *game);
+void		move_up(int keycode, t_game *game);
+void		move_down(int keycode, t_game *game);
+void		move_left(int keycode, t_game *game);
+void		move_right(int keycode, t_game *game);
+void		free_all(t_game *game);
 void		can_reach(int x, int y, t_game *game);
 void		fill_visited(t_game *game);
 int			is_valid(int x, int y, t_game *game);
 void		is_recheable(t_game *game);
-void		put_imgup(t_game *game);
-void		destroy_game(t_game *game);
 void		ft_check_rectungle(t_game *game);
 void		ft_fill_map(t_game *game, int fd);
+void		ft_put_img_down(int i, int j, t_game *game);
+void		ft_put_img_up(int i, int j, t_game *game);
+void		ft_put_img_left(int i, int j, t_game *game);
+void		ft_put_img_right(int i, int j, t_game *game);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

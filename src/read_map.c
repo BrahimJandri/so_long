@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:00:02 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/10 15:10:06 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/11 16:43:35 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	contline(int fd)
 	{
 		free(line);
 		i++;
+		line = get_next_line(fd);
 	}
 	return (i);
 }
@@ -66,6 +67,8 @@ void	ft_read_map(t_game *game, char *argv)
 	fd = open(argv, O_RDONLY);
 	error_open(fd);
 	temp = get_next_line(fd);
+	if (temp[0] == '\n')
+		error_msg("Erorr\nInvalid map");
 	len = ft_strlen(temp) - 1;
 	game->map_y = len;
 	close(fd);
