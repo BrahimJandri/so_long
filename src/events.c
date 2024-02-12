@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:40:30 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:32:16 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	move_game(int keycode, t_game *game)
 {
 	if (keycode == ESC || keycode == Q)
 	{
-		mlx_destroy_window(game->mlx, game->win);
-		mlx_destroy_display(game->mlx);
+		ft_destroy_game(game);
 		exit(1);
 	}
 	else
@@ -42,7 +41,8 @@ void	move_up(int keycode, t_game *game)
 	if ((keycode == UP || keycode == W))
 	{
 		if (game->map[game->player_x - 1][game->player_y] == '0'
-			|| game->map[game->player_x - 1][game->player_y] == 'C')
+			|| game->map[game->player_x - 1][game->player_y] == 'C'
+			|| game->map[game->player_x - 1][game->player_y] == 'P')
 		{
 			game->player_x -= 1;
 			game->moves++;
@@ -53,8 +53,7 @@ void	move_up(int keycode, t_game *game)
 		{
 			if (game->coins_c == game->count_coins)
 			{
-				mlx_destroy_window(game->mlx, game->win);
-				mlx_destroy_display(game->mlx);
+				// ft_destroy_game(game);
 				exit(1);
 			}
 		}
@@ -68,7 +67,8 @@ void	move_left(int keycode, t_game *game)
 	if ((keycode == LEFT || keycode == A))
 	{
 		if (game->map[game->player_x][game->player_y - 1] == '0'
-			|| game->map[game->player_x][game->player_y - 1] == 'C')
+			|| game->map[game->player_x][game->player_y - 1] == 'C'
+			|| game->map[game->player_x][game->player_y - 1] == 'P')
 		{
 			game->player_y -= 1;
 			game->moves++;
@@ -79,8 +79,7 @@ void	move_left(int keycode, t_game *game)
 		{
 			if (game->coins_c == game->count_coins)
 			{
-				mlx_destroy_window(game->mlx, game->win);
-				mlx_destroy_display(game->mlx);
+				// ft_destroy_game(game);
 				exit(1);
 			}
 		}
@@ -94,7 +93,8 @@ void	move_down(int keycode, t_game *game)
 	if ((keycode == DOWN || keycode == S))
 	{
 		if (game->map[game->player_x + 1][game->player_y] == '0'
-			|| game->map[game->player_x + 1][game->player_y] == 'C')
+			|| game->map[game->player_x + 1][game->player_y] == 'C'
+			|| game->map[game->player_x + 1][game->player_y] == 'P')
 		{
 			game->player_x += 1;
 			game->moves++;
@@ -105,8 +105,7 @@ void	move_down(int keycode, t_game *game)
 		{
 			if (game->coins_c == game->count_coins)
 			{
-				mlx_destroy_window(game->mlx, game->win);
-				mlx_destroy_display(game->mlx);
+				// ft_destroy_game(game);
 				exit(1);
 			}
 		}
@@ -120,7 +119,8 @@ void	move_right(int keycode, t_game *game)
 	if ((keycode == RIGHT || keycode == D))
 	{
 		if (game->map[game->player_x][game->player_y + 1] == '0'
-			|| game->map[game->player_x][game->player_y + 1] == 'C')
+			|| game->map[game->player_x][game->player_y + 1] == 'C'
+			|| game->map[game->player_x][game->player_y + 1] == 'P')
 		{
 			game->player_y += 1;
 			game->moves++;
@@ -131,8 +131,7 @@ void	move_right(int keycode, t_game *game)
 		{
 			if (game->coins_c == game->count_coins)
 			{
-				mlx_destroy_window(game->mlx, game->win);
-				mlx_destroy_display(game->mlx);
+				// ft_destroy_game(game);
 				exit(1);
 			}
 		}

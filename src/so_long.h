@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:31:37 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/12 11:35:59 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void		ft_put_img_down(int i, int j, t_game *game);
 void		ft_put_img_up(int i, int j, t_game *game);
 void		ft_put_img_left(int i, int j, t_game *game);
 void		ft_put_img_right(int i, int j, t_game *game);
+int			ft_exit(void);
+void		ft_destroy_game(t_game *game);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

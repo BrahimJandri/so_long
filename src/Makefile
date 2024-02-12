@@ -7,7 +7,7 @@ AR = ar rcs
 LIBFT = ../libft/libft.a
 
 SRC = check_all_map.c draw_map.c read_map.c so_long.c get_next_line.c get_next_line_utils.c events.c can_reach.c \
-	free_game.c ft_put_img.c
+	free_game.c ft_put_img.c ft_func_help.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

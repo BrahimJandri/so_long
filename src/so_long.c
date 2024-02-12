@@ -6,53 +6,15 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/11 15:26:35 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/12 12:33:14 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	error_msg(char *msg)
-{
-	ft_printf("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
-int	check_path(const char *filename)
-{
-	size_t	len;
-
-	len = ft_strlen(filename);
-	if (len >= 4 && ft_strncmp(filename + len - 4, ".ber", 4) == 0)
-		return (1);
-	else
-		return (0);
-}
-
-void	free_all(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i])
-	{
-		free(game->map[i]);
-		i++;
-	}
-	i = 0;
-	while (game->visited[i])
-	{
-		free(game->visited[i]);
-		i++;
-	}
-	free(game->map);
-	free(game);
-	free(game->visited);
-}
-
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	static t_game	*game;
 
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
@@ -73,6 +35,8 @@ int	main(int argc, char **argv)
 			"so_long");
 	map_run(game);
 	mlx_hook(game->win, 2, 1L << 0, move_game, game);
+	mlx_hook(game->win, 17, 1L << 17, ft_exit, game);
 	mlx_loop(game->mlx);
+	free_all(game);
 	return (0);
 }
