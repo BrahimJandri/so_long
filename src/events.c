@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/13 18:48:47 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/13 21:48:23 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	move_player(int keycode, t_game *game)
 void	move_direction(t_game *game, int x, int y, char *img)
 {
 	if (game->map[game->player_x + x][game->player_y + y] == '0'
-		|| game->map[game->player_x + x][game->player_y + y] == 'C'
-		|| game->map[game->player_x + x][game->player_y + y] == 'P')
+		|| game->map[game->player_x + x][game->player_y + y] == 'C' ||
+		game->map[game->player_x + x][game->player_y + y] == 'P')
 	{
 		game->player_x += x;
 		game->player_y += y;
@@ -69,28 +69,17 @@ void	move_direction(t_game *game, int x, int y, char *img)
 	}
 }
 
-// void ft_put_img(int i, int j, char *img, t_game *game)
-// {
-//     game->img = mlx_xpm_file_to_image(game->mlx, img, &game->height, &game->width);
-//     mlx_put_image_to_window(game->mlx, game->win, game->img, j * 64, i * 64);
-//     mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_y * 64, game->player_x * 64);
-// }
-
-
 void ft_put_img(int i, int j, char *img, t_game *game)
 {
-    // Destroy the previous player image
-    // mlx_destroy_image(game->mlx, game->img);
-
-    // Display the floor in the previous player position
-    // mlx_put_image_to_window(game->mlx, game->win, game->floor, game->new_y * 64, game->new_x * 64);
-
-    // Load and display the new player position
-    game->img = mlx_xpm_file_to_image(game->mlx, img, &game->height, &game->width);
-    mlx_put_image_to_window(game->mlx, game->win, game->img, j * 64, i * 64);
-
-    // Update the player's current position
-    game->new_x = i;
-    game->new_y = j;
+    char *floor = "Textures/floor.xpm";
+    void *t = mlx_xpm_file_to_image(game->mlx, floor, &game->width, &game->height);
+    mlx_put_image_to_window(game->mlx, game->win, t, i * 64, j * 64);
+	mlx_destroy_image(game->mlx, t);
+    game->img = mlx_xpm_file_to_image(game->mlx, img, &game->width, &game->height);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, game->player_y * 64, game->player_x * 64);
+    mlx_destroy_image(game->mlx, game->img);
 }
+
+
+
 
