@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/12 11:35:59 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:44:48 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@
 #  define BUFFER_SIZE 1
 # endif
 
-# define WALL_SPRITE "../Textures/wall.xpm"
-# define FLOOR_SPRITE "../Textures/floor.xpm"
-# define COINS_SPRITE "../Textures/coins.xpm"
-# define EXIT_SPRITE "../Textures/exit.xpm"
-# define P_FROTN "../Textures/p_front.xpm"
-# define P_LEFT "../Textures/p_left.xpm"
-# define P_RIGHT "../Textures/p_right.xpm"
-# define P_BACK "../Textures/p_back.xpm"
+# define WALL_SPRITE "Textures/wall.xpm"
+# define FLOOR_SPRITE "Textures/floor.xpm"
+# define COINS_SPRITE "Textures/coins.xpm"
+# define EXIT_SPRITE "Textures/exit.xpm"
+# define P_FROTN "Textures/p_front.xpm"
+# define P_LEFT "Textures/p_left.xpm"
+# define P_RIGHT "Textures/p_right.xpm"
+# define P_BACK "Textures/p_back.xpm"
 
 typedef struct s_game
 {
@@ -58,14 +58,8 @@ typedef struct s_game
 	int		coins_c;
 	int		exit_c;
 	int		player_c;
-	void	*exit;
-	void	*p_front;
-	void	*p_left;
-	void	*p_back;
-	void	*p_right;
-	void	*coin;
+	void	*img;
 	void	*floor;
-	void	*wall;
 	int		width;
 	int		height;
 	int		new_x;
@@ -84,18 +78,11 @@ void		ft_check_border_map(t_game *game);
 int			error_msg(char *msg);
 void		ft_read_map(t_game *game, char *str);
 void		map_run(t_game *game);
-void		draw_coins(t_game *game);
-void		draw_player(t_game *game);
-void		draw_floor(t_game *game);
-void		draw_exit(t_game *game);
-void		draw_wall(t_game *game);
+void		ft_draw_map(t_game *game);
 int			check_path(const char *filename);
 int			move_game(int keycode, t_game *game);
 void		free_game(t_game *game);
-void		move_up(int keycode, t_game *game);
-void		move_down(int keycode, t_game *game);
-void		move_left(int keycode, t_game *game);
-void		move_right(int keycode, t_game *game);
+void		move_player(int keycode, t_game *game);
 void		free_all(t_game *game);
 void		can_reach(int x, int y, t_game *game);
 void		fill_visited(t_game *game);
@@ -103,12 +90,9 @@ int			is_valid(int x, int y, t_game *game);
 void		is_recheable(t_game *game);
 void		ft_check_rectungle(t_game *game);
 void		ft_fill_map(t_game *game, int fd);
-void		ft_put_img_down(int i, int j, t_game *game);
-void		ft_put_img_up(int i, int j, t_game *game);
-void		ft_put_img_left(int i, int j, t_game *game);
-void		ft_put_img_right(int i, int j, t_game *game);
+void		ft_put_img(int i, int j, char *img, t_game *game);
 int			ft_exit(void);
-void		ft_destroy_game(t_game *game);
+void	move_direction(t_game *game, int x, int y, char *img);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

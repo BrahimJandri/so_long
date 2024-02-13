@@ -6,46 +6,34 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:59:56 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/04 15:52:59 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:15:12 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	draw_coins(t_game *game);
-void	draw_player(t_game *game);
-void	draw_floor(t_game *game);
-void	draw_exit(t_game *game);
-void	draw_wall(t_game *game);
-
-void	draw_coins(t_game *game)
+static char *ft_make_map(char **map, int x, int y)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->map_x)
-	{
-		j = 0;
-		while (j < game->map_y)
-		{
-			if (game->map[i][j] == 'C')
-			{
-				game->coin = mlx_xpm_file_to_image(game->mlx, COINS_SPRITE,
-						&game->height, &game->width);
-				mlx_put_image_to_window(game->mlx, game->win, game->coin, j
-					* 64, i * 64);
-			}
-			j++;
-		}
-		i++;
-	}
+	char *str;
+	
+	if(map[x][y] == '0')
+		str = FLOOR_SPRITE;
+	else if(map[x][y] == '1')
+		str = WALL_SPRITE;
+	else if(map[x][y] == 'E')
+		str = EXIT_SPRITE;
+	else if(map[x][y] == 'C')
+		str = COINS_SPRITE;
+	else if(map[x][y] == 'P')
+		str = P_FROTN;
+	return(str);
 }
 
-void	draw_exit(t_game *game)
+void ft_draw_map(t_game *game)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
+	char *img;
 
 	i = 0;
 	while (i < game->map_x)
@@ -53,86 +41,12 @@ void	draw_exit(t_game *game)
 		j = 0;
 		while (j < game->map_y)
 		{
-			if (game->map[i][j] == 'E')
-			{
-				game->exit = mlx_xpm_file_to_image(game->mlx, EXIT_SPRITE,
-						&game->height, &game->width);
-				mlx_put_image_to_window(game->mlx, game->win, game->exit, j
-					* 64, i * 64);
-			}
+			img = ft_make_map(game->map, i, j);
+			game->img = mlx_xpm_file_to_image(game->mlx, img,
+											  &game->height, &game->width);
+			mlx_put_image_to_window(game->mlx, game->win, game->img, j * 64, i * 64);
 			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_player(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->map_x)
-	{
-		j = 0;
-		while (j < game->map_y)
-		{
-			if (game->map[i][j] == 'P')
-			{
-				game->p_front = mlx_xpm_file_to_image(game->mlx, P_FROTN,
-						&game->height, &game->width);
-				mlx_put_image_to_window(game->mlx, game->win, game->p_front, j
-					* 64, i * 64);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_floor(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->map_x)
-	{
-		j = 0;
-		while (j < game->map_y)
-		{
-			if (game->map[i][j] == '0')
-			{
-				game->floor = mlx_xpm_file_to_image(game->mlx, FLOOR_SPRITE,
-						&game->height, &game->width);
-				mlx_put_image_to_window(game->mlx, game->win, game->floor, j
-					* 64, i * 64);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_wall(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < game->map_x)
-	{
-		j = 0;
-		while (j < game->map_y)
-		{
-			if (game->map[i][j] == '1')
-			{
-				game->wall = mlx_xpm_file_to_image(game->mlx, WALL_SPRITE,
-						&game->height, &game->width);
-				mlx_put_image_to_window(game->mlx, game->win, game->wall, j
-					* 64, i * 64);
-			}
-			j++;
+			mlx_destroy_image(game->mlx, game->img);
 		}
 		i++;
 	}

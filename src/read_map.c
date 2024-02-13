@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:00:02 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/11 16:43:35 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:00:08 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,5 @@ void	map_run(t_game *game)
 	can_reach(game->player_x, game->player_y, game);
 	is_valid(game->player_x, game->player_y, game);
 	is_recheable(game);
-	draw_coins(game);
-	draw_player(game);
-	draw_floor(game);
-	draw_exit(game);
-	draw_wall(game);
+	ft_draw_map(game);
 }
