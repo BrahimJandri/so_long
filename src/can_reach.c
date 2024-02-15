@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:27:28 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/08 17:32:48 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:41:17 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,12 @@ int	is_valid(int x, int y, t_game *game)
 	if (x > 0 && x < game->map_x && y > 0 && y < game->map_y
 		&& game->map[x][y] != '1' && game->map[x][y] != 'P'
 		&& !game->visited[x][y])
-		return (1);
+			return (1);
 	return (0);
 }
 
 void	is_recheable(t_game *game)
 {
-	if (game->coins_reach != game->coins_c)
-		error_msg("Coins Can't Reach Invalid Map");
-	if (game->exit_reach != 1)
-		error_msg("Exit Can't Reach Invalid Map");
+	if (game->coins_reach != game->coins_c || game->exit_reach != 1)
+		error_msg("Invalid Map");
 }

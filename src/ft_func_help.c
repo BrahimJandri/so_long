@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:30:35 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/13 17:51:22 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:40:54 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ int	ft_exit(void)
 {
 	exit(1);
 	return (0);
+}
+
+void	map_check(t_game *game)
+{
+	ft_check_all_map(game);
+	fill_visited(game);
+	can_reach(game->player_x, game->player_y, game);
+	is_valid(game->player_x, game->player_y, game);
+	is_recheable(game);
 }

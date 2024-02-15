@@ -6,13 +6,13 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:00:02 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/13 21:51:57 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/15 11:38:49 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_open(int fd)
+static void	error_open(int fd)
 {
 	if (fd == -1)
 	{
@@ -21,7 +21,7 @@ void	error_open(int fd)
 	}
 }
 
-int	contline(int fd)
+static int	contline(int fd)
 {
 	int		i;
 	char	*line;
@@ -37,7 +37,7 @@ int	contline(int fd)
 	return (i);
 }
 
-void	ft_fill_map(t_game *game, int fd)
+static void	ft_fill_map(t_game *game, int fd)
 {
 	int		i;
 	char	*line;
@@ -63,6 +63,8 @@ void	ft_read_map(t_game *game, char *argv)
 	fd = open(argv, O_RDONLY);
 	error_open(fd);
 	game->map_x = contline(fd);
+	if (!game->map_x || game->map_x < 3)
+		error_msg("Erorr\nInvalid map");
 	close(fd);
 	fd = open(argv, O_RDONLY);
 	error_open(fd);
@@ -79,17 +81,4 @@ void	ft_read_map(t_game *game, char *argv)
 	free(temp);
 	if (!game->map)
 		error_msg("Memory allocation error");
-}
-
-void	map_run(t_game *game)
-{
-	ft_check_border_map(game);
-	ft_count_map_params(game);
-	ft_check_rectungle(game);
-	ft_check_params(game);
-	fill_visited(game);
-	can_reach(game->player_x, game->player_y, game);
-	is_valid(game->player_x, game->player_y, game);
-	is_recheable(game);
-	ft_draw_map(game);
 }

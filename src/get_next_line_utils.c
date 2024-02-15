@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:09:14 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/03 10:21:15 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/14 12:59:47 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;

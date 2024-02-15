@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:08:43 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/10 10:58:56 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/14 12:59:59 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_first_line(int fd, char *str)
 			return (NULL);
 		}
 		buf[ret] = '\0';
-		str = ft_strjoin(str, buf);
+		str = ft_strjjoin(str, buf);
 		if (!str)
 			return (NULL);
 	}

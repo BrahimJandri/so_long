@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:05 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/10 15:12:09 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/15 13:13:47 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,16 @@ void	ft_count_map_params(t_game *game)
 			if (game->map[i][j] == 'E')
 				game->exit_c++;
 			else if (game->map[i][j] == 'P')
-			{
-				game->player_x = i;
-				game->player_y = j;
 				game->player_c++;
-			}
 			else if (game->map[i][j] == 'C')
 				game->coins_c++;
+			else if(game->map[i][j] == '0')
+				game->floor_c++;
 			j++;
 		}
 		i++;
 	}
-	if (game->coins_c == 0 || game->exit_c != 1 || game->player_c != 1)
+	if (game->coins_c == 0 || game->exit_c != 1 || game->player_c != 1 || game->floor_c < 1)
 		error_msg("Error\nMap params is not valid");
 }
 
@@ -103,7 +101,12 @@ void	ft_check_params(t_game *game)
 		j = 0;
 		while (j < game->map_y)
 		{
-			if (game->map[i][j] != '1' && game->map[i][j] != 'C'
+			if(game->map[i][j] == 'P')
+			{
+				game->player_x = i;
+				game->player_y = j;
+			}
+			else if (game->map[i][j] != '1' && game->map[i][j] != 'C'
 				&& game->map[i][j] != 'E' && game->map[i][j] != '0'
 				&& game->map[i][j] != 'P')
 				error_msg("Error\nInvalid params of the map");
