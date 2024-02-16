@@ -15,6 +15,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(MAKE) -C ../libft
 	$(CC) $(CFLAGS) $(OBJ) $(MLXFLAGS) $(LIBFT) -o $(NAME)
+
 clean:
 	$(MAKE) clean -C ../libft
 	$(RM) $(OBJ)

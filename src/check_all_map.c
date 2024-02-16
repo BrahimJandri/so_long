@@ -60,13 +60,14 @@ void	ft_count_map_params(t_game *game)
 				game->player_c++;
 			else if (game->map[i][j] == 'C')
 				game->coins_c++;
-			else if(game->map[i][j] == '0')
+			else if (game->map[i][j] == '0')
 				game->floor_c++;
 			j++;
 		}
 		i++;
 	}
-	if (game->coins_c == 0 || game->exit_c != 1 || game->player_c != 1 || game->floor_c < 1)
+	if (game->coins_c == 0 || game->exit_c != 1 || game->player_c != 1
+		|| game->floor_c < 1)
 		error_msg("Error\nMap params is not valid");
 }
 
@@ -101,7 +102,7 @@ void	ft_check_params(t_game *game)
 		j = 0;
 		while (j < game->map_y)
 		{
-			if(game->map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 			{
 				game->player_x = i;
 				game->player_y = j;

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/15 15:40:33 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/16 11:17:41 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ typedef struct s_game
 	int		**visited;
 	int		coins_reach;
 	int		exit_reach;
-	int		color;
 	int		count_coins;
 }			t_game;
-
 
 void		ft_check_all_map(t_game *game);
 void		ft_check_params(t_game *game);

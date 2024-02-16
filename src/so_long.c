@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/15 16:42:24 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/16 10:14:34 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	ft_print_movements(t_game *game, int move)
 {
 	char	*moves;
 	char	*phrase;
+	void	*wall;
 
 	moves = ft_itoa(move);
 	phrase = ft_strjoin("Movements : ", moves);
-	void *wall = mlx_xpm_file_to_image(game->mlx, WALL_SPRITE, &game->width, &game->height);
+	wall = mlx_xpm_file_to_image(game->mlx, WALL_SPRITE, &game->width,
+			&game->height);
 	mlx_put_image_to_window(game->mlx, game->win, wall, 45, 0);
-	mlx_put_image_to_window(game->mlx, game->win, wall, 55, 0);
+	mlx_put_image_to_window(game->mlx, game->win, wall, 60, 0);
 	mlx_string_put(game->mlx, game->win, 20, 20, 0xFFFFF, phrase);
 	mlx_destroy_image(game->mlx, wall);
 	free(moves);

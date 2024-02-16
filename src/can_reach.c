@@ -63,7 +63,7 @@ int	is_valid(int x, int y, t_game *game)
 	if (x > 0 && x < game->map_x && y > 0 && y < game->map_y
 		&& game->map[x][y] != '1' && game->map[x][y] != 'P'
 		&& !game->visited[x][y])
-			return (1);
+		return (1);
 	return (0);
 }
 
