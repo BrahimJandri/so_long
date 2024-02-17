@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/16 11:17:41 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/17 14:58:43 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-# include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+# include "../../libft/libft.h"
+# include "../../minilibx/mlx.h"
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -44,6 +44,8 @@
 # define P_LEFT "Textures/p_left.xpm"
 # define P_RIGHT "Textures/p_right.xpm"
 # define P_BACK "Textures/p_back.xpm"
+# define ENEMY "Textures/enemy.xpm"
+
 
 typedef struct s_game
 {
@@ -59,12 +61,13 @@ typedef struct s_game
 	int		exit_c;
 	int		player_c;
 	int		floor_c;
+	int		enemy_c;
 	void	*img;
 	int		width;
 	int		height;
 	int		new_x;
 	int		new_y;
-	int		**visited;
+	char	**map2;
 	int		coins_reach;
 	int		exit_reach;
 	int		count_coins;
@@ -91,11 +94,14 @@ int			is_valid(int x, int y, t_game *game);
 void		is_recheable(t_game *game);
 int			ft_exit(void);
 void		ft_print_movements(t_game *game, int move);
-
+void		map_dup(t_game *game);
+void    	ft_flood_fill(int x, int y, t_game *game);
+void 		ft_check_e(t_game *game);
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);
 char		*ft_strjjoin(char *s1, char *s2);
 char		*ft_strchr(char *str, int c);
 char		*ft_free(char *str);
+void 		check_enemy(t_game *game);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/15 16:37:37 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/17 15:18:37 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	move_game(int keycode, t_game *game)
 {
@@ -54,7 +54,6 @@ void	move_direction(t_game *game, int x, int y, char *img)
 		game->player_x += x;
 		game->player_y += y;
 		game->moves++;
-		ft_printf("Moves : %d\n", game->moves);
 		ft_print_movements(game, game->moves);
 		ft_put_img(game->new_y, game->new_x, img, game);
 	}
@@ -68,6 +67,8 @@ void	move_direction(t_game *game, int x, int y, char *img)
 			exit(1);
 		}
 	}
+	if (game->map[game->new_x + x][game->new_y + y] == 'T')
+		check_enemy(game);
 }
 
 void	ft_put_img(int i, int j, char *img, t_game *game)
@@ -84,3 +85,10 @@ void	ft_put_img(int i, int j, char *img, t_game *game)
 		* 64, game->player_x * 64);
 	mlx_destroy_image(game->mlx, game->img);
 }
+void check_enemy(t_game *game)
+{
+		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
+		ft_printf("You Lose 👎 ❌\n");
+		exit(1);
+}	

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:30:35 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/16 11:18:22 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/17 11:59:39 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	free_all(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (game->visited[i])
+	while (game->map2[i])
 	{
-		free(game->visited[i]);
+		free(game->map2[i]);
 		i++;
 	}
 	free(game->map);
 	free(game);
-	free(game->visited);
+	free(game->map2);
 }
 
 int	ft_exit(void)
@@ -59,8 +59,7 @@ int	ft_exit(void)
 void	map_check(t_game *game)
 {
 	ft_check_all_map(game);
-	fill_visited(game);
-	can_reach(game->player_x, game->player_y, game);
-	is_valid(game->player_x, game->player_y, game);
-	is_recheable(game);
+	map_dup(game);
+	ft_flood_fill(game->player_x, game->player_y, game);
+	ft_check_e(game);
 }
