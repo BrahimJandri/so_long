@@ -26,7 +26,7 @@ static char	*ft_make_map(char **map, int x, int y)
 		str = COINS_SPRITE;
 	else if (map[x][y] == 'P')
 		str = P_FROTN;
-	else if(map[x][y] == 'T')
+	else if (map[x][y] == 'T')
 		str = ENEMY;
 	return (str);
 }

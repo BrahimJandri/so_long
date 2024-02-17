@@ -46,7 +46,6 @@
 # define P_BACK "Textures/p_back.xpm"
 # define ENEMY "Textures/enemy.xpm"
 
-
 typedef struct s_game
 {
 	void	*mlx;
@@ -95,13 +94,13 @@ void		is_recheable(t_game *game);
 int			ft_exit(void);
 void		ft_print_movements(t_game *game, int move);
 void		map_dup(t_game *game);
-void    	ft_flood_fill(int x, int y, t_game *game);
-void 		ft_check_e(t_game *game);
+void		ft_flood_fill(int x, int y, t_game *game);
+void		ft_check_e(t_game *game);
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);
 char		*ft_strjjoin(char *s1, char *s2);
 char		*ft_strchr(char *str, int c);
 char		*ft_free(char *str);
-void 		check_enemy(t_game *game);
+void		check_enemy(t_game *game);
 
 #endif

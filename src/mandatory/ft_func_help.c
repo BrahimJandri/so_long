@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:30:35 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 11:59:39 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/17 15:31:33 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	free_all(t_game *game)
 
 int	ft_exit(void)
 {
+	ft_printf("Unfortunately You Exit The Game 👎 ❌\n");
 	exit(1);
 	return (0);
 }

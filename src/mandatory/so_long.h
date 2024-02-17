@@ -64,7 +64,7 @@ typedef struct s_game
 	int		height;
 	int		new_x;
 	int		new_y;
-	char		**map2;
+	char	**map2;
 	int		coins_reach;
 	int		exit_reach;
 	int		count_coins;
@@ -91,8 +91,8 @@ int			is_valid(int x, int y, t_game *game);
 void		is_recheable(t_game *game);
 int			ft_exit(void);
 void		map_dup(t_game *game);
-void    	ft_flood_fill(int x, int y, t_game *game);
-void 		ft_check_e(t_game *game);
+void		ft_flood_fill(int x, int y, t_game *game);
+void		ft_check_e(t_game *game);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

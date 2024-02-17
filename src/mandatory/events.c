@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 12:00:31 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/17 15:28:21 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	move_direction(t_game *game, int x, int y, char *img)
 		game->player_y += y;
 		game->moves++;
 		ft_printf("Moves : %d\n", game->moves);
-		// ft_print_movements(game, game->moves);
 		ft_put_img(game->new_y, game->new_x, img, game);
 	}
 	else if (game->map[game->player_x + x][game->player_y + y] == 'E')

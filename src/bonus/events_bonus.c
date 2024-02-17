@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 15:18:37 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/17 15:36:40 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,11 @@ void	ft_put_img(int i, int j, char *img, t_game *game)
 		* 64, game->player_x * 64);
 	mlx_destroy_image(game->mlx, game->img);
 }
-void check_enemy(t_game *game)
+
+void	check_enemy(t_game *game)
 {
-		mlx_destroy_window(game->mlx, game->win);
-		mlx_destroy_display(game->mlx);
-		ft_printf("You Lose 👎 ❌\n");
-		exit(1);
-}	
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	ft_printf("You Lose 👎 ❌\n");
+	exit(1);
+}
