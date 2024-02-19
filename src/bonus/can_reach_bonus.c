@@ -56,10 +56,10 @@ void	ft_check_e(t_game *game)
 				if (game->map2[i + 1][j] != 'V' && game->map2[i - 1][j] != 'V'
 					&& game->map2[i][j + 1] != 'V' && game->map2[i][j
 					- 1] != 'V')
-						error_msg("Can't Reach The Exit");
+					error_msg("Can't Reach The Exit");
 			}
 			if (game->map2[i][j] == 'C')
-					error_msg("Can't Reach The Coins");
+				error_msg("Can't Reach The Coins");
 			if (game->map2[i][j] == 'T')
 				error_msg("Can't Reach The Enemy");
 			j++;

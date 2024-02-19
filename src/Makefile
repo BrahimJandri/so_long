@@ -15,7 +15,7 @@ SRC = $(MANSRC)/check_all_map.c $(MANSRC)/draw_map.c $(MANSRC)/read_map.c $(MANS
 
 SRCB = $(BONUSRC)/check_all_map_bonus.c $(BONUSRC)/draw_map_bonus.c $(BONUSRC)/read_map_bonus.c \
 	$(BONUSRC)/so_long_bonus.c $(BONUSRC)/get_next_line_bonus.c $(BONUSRC)/get_next_line_utils_bonus.c \
-	$(BONUSRC)/can_reach_bonus.c $(BONUSRC)/ft_func_help_bonus.c $(BONUSRC)/events_bonus.c
+	$(BONUSRC)/can_reach_bonus.c $(BONUSRC)/ft_func_help_bonus.c $(BONUSRC)/events_bonus.c $(BONUSRC)/Animation.c
 
 OBJ = $(SRC:.c=.o)
 OBJB = $(SRCB:.c=.o)

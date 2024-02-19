@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 14:58:43 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/19 16:42:47 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@
 # define P_LEFT "Textures/p_left.xpm"
 # define P_RIGHT "Textures/p_right.xpm"
 # define P_BACK "Textures/p_back.xpm"
-# define ENEMY "Textures/enemy.xpm"
+# define ENEMY_1 "Textures/enemy-1.xpm"
+# define ENEMY_2 "Textures/enemy-2.xpm"
 
 typedef struct s_game
 {
@@ -67,6 +68,9 @@ typedef struct s_game
 	int		new_x;
 	int		new_y;
 	char	**map2;
+	int		enemy_x;
+	int		enemy_y;
+	int		direction;
 	int		coins_reach;
 	int		exit_reach;
 	int		count_coins;
@@ -87,10 +91,9 @@ void		move_player(int keycode, t_game *game);
 void		move_direction(t_game *game, int x, int y, char *img);
 void		ft_put_img(int i, int j, char *img, t_game *game);
 void		free_all(t_game *game);
-void		can_reach(int x, int y, t_game *game);
-void		fill_visited(t_game *game);
-int			is_valid(int x, int y, t_game *game);
-void		is_recheable(t_game *game);
+void		draw_enemy(t_game *game, char *img);
+int			update_and_draw(t_game *game);
+char		*Animations_enemy(t_game *game);
 int			ft_exit(void);
 void		ft_print_movements(t_game *game, int move);
 void		map_dup(t_game *game);

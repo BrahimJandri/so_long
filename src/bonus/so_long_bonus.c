@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:23 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 13:11:46 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/19 15:36:51 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	ft_draw_map(&game);
 	mlx_hook(game.win, 2, 1L << 0, move_game, &game);
 	mlx_hook(game.win, 17, 1L << 17, ft_exit, &game);
+	mlx_loop_hook(game.mlx, update_and_draw, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
