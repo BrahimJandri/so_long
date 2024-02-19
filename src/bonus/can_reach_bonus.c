@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:27:28 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 15:36:21 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/19 12:08:38 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	ft_check_e(t_game *game)
 				if (game->map2[i + 1][j] != 'V' && game->map2[i - 1][j] != 'V'
 					&& game->map2[i][j + 1] != 'V' && game->map2[i][j
 					- 1] != 'V')
-					error_msg("Can't Reach The Exit");
-				if (game->map2[i][j] == 'C')
-					error_msg("Can't Reach The Coins");
-				if (game->map2[i][j] == 'T')
-					error_msg("Can't Reach The Enemy");
+						error_msg("Can't Reach The Exit");
 			}
+			if (game->map2[i][j] == 'C')
+					error_msg("Can't Reach The Coins");
+			if (game->map2[i][j] == 'T')
+				error_msg("Can't Reach The Enemy");
 			j++;
 		}
 		i++;
