@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/19 16:42:47 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/19 17:35:48 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ typedef struct s_game
 	int		new_x;
 	int		new_y;
 	char	**map2;
-	int		enemy_x;
-	int		enemy_y;
-	int		direction;
 	int		coins_reach;
 	int		exit_reach;
 	int		count_coins;
@@ -93,17 +90,17 @@ void		ft_put_img(int i, int j, char *img, t_game *game);
 void		free_all(t_game *game);
 void		draw_enemy(t_game *game, char *img);
 int			update_and_draw(t_game *game);
-char		*Animations_enemy(t_game *game);
+char		*animations_enemy(t_game *game);
 int			ft_exit(void);
 void		ft_print_movements(t_game *game, int move);
 void		map_dup(t_game *game);
 void		ft_flood_fill(int x, int y, t_game *game);
 void		ft_check_e(t_game *game);
+void		check_enemy(t_game *game);
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);
 char		*ft_strjjoin(char *s1, char *s2);
 char		*ft_strchr(char *str, int c);
 char		*ft_free(char *str);
-void		check_enemy(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:48:07 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/19 16:44:26 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/19 17:37:13 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ char	*animations_enemy(t_game *game)
 	static int	i = 0;
 	char		*img;
 
-	if (i < 60)
+	if (i < 100)
 	{
 		img = ENEMY_1;
 	}
-	else if (i < 80)
+	else if (i < 150)
 	{
 		img = ENEMY_2;
 	}
@@ -49,8 +49,6 @@ void	draw_enemy(t_game *game, char *img)
 		{
 			if (game->map[i][j] == 'T')
 			{
-				game->enemy_x = i;
-				game->enemy_y = j;
 				enemy_img = mlx_xpm_file_to_image(game->mlx, img, &game->height,
 						&game->width);
 				mlx_put_image_to_window(game->mlx, game->win, enemy_img, j * 64,
@@ -67,7 +65,7 @@ int	update_and_draw(t_game *game)
 {
 	char	*img;
 
-	img = Animations_enemy(game);
+	img = animations_enemy(game);
 	draw_enemy(game, img);
 	return (0);
 }

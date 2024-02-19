@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 15:36:40 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/19 17:33:46 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void	check_enemy(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
-	ft_printf("You Lose 👎 ❌\n");
+	ft_printf("You Lose  ❌❌❌\n");
 	exit(1);
 }
