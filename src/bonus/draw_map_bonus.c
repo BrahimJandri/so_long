@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:59:56 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/20 21:51:11 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/22 14:58:03 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	error_map(char *msg, t_game *game)
 
 void	error_map2(char *msg, t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (game->map[i])

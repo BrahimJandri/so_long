@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:08:43 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 13:32:58 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/22 14:43:04 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_new_str(char *str)
 	int		j;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (str[i])
 		i++;
 	if (!str[i])
 		return (ft_free(str));
