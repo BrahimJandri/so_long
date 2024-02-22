@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:05 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 14:49:42 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/20 21:46:12 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_check_border_map(t_game *game)
 	while (i < game->map_x)
 	{
 		if (game->map[i][0] != '1' || game->map[i][j] != '1')
-			error_msg("Error\nMap is not closed missing walls rows");
+			error_map("Error\nMap is not closed missing walls rows", game);
 		i++;
 	}
 	i = 0;
@@ -38,7 +38,7 @@ void	ft_check_border_map(t_game *game)
 	while (i < game->map_y)
 	{
 		if (game->map[0][i] != '1' || game->map[j][i] != '1')
-			error_msg("Error\nMap is not closed missing walls columns");
+			error_map("Error\nMap is not closed missing walls columns", game);
 		i++;
 	}
 }
@@ -82,12 +82,12 @@ void	ft_check_rectungle(t_game *game)
 	{
 		current_line = ft_strlen(game->map[i]);
 		if (current_line != first_line)
-			error_msg("Error\nMap is Not Rectungle");
+			error_map("Error\nMap is Not Rectungle", game);
 		i++;
 	}
 	current_line = ft_strlen(game->map[i]);
 	if (current_line != first_line - 1)
-		error_msg("Error\nMap is Not Rectungle");
+		error_map("Error\nMap is Not Rectungle", game);
 }
 
 void	ft_check_params(t_game *game)
@@ -109,12 +109,12 @@ void	ft_check_params(t_game *game)
 			else if (game->map[i][j] != '1' && game->map[i][j] != 'C'
 				&& game->map[i][j] != 'E' && game->map[i][j] != '0'
 				&& game->map[i][j] != 'P' && game->map[i][j] != 'T')
-				error_msg("Error\nInvalid params of the map");
+				error_map("Error\nMap params is not valid", game);
 			j++;
 		}
 		i++;
 	}
 	if (game->coins_c == 0 || game->exit_c != 1 || game->player_c != 1
 		|| game->floor_c < 1 || game->enemy_c < 1)
-		error_msg("Error\nMap params is not valid");
+		error_map("Error\nMap params is not valid", game);
 }

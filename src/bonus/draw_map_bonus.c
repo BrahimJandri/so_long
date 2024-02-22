@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:59:56 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/19 16:11:16 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/20 21:51:11 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,41 @@ void	ft_draw_map(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	error_map(char *msg, t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	ft_printf("%s\n", msg);
+	exit(EXIT_FAILURE);
+}
+
+void	error_map2(char *msg, t_game *game)
+{
+	int i;
+
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+	i = 0;
+	while (game->map2[i])
+	{
+		free(game->map2[i]);
+		i++;
+	}
+	free(game->map);
+	free(game->map2);
+	ft_printf("%s\n", msg);
+	exit(EXIT_FAILURE);
 }

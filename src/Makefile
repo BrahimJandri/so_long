@@ -1,7 +1,7 @@
 NAME = so_long
 BONUS_NAME = so_long_bonus
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 MLXFLAGS = -L../minilibx -lmlx -lm -lX11 -lXext
 RM = rm -f
 AR = ar rcs

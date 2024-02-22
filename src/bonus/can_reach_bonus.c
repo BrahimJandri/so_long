@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:27:28 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/19 12:08:38 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/22 10:52:57 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_flood_fill(int x, int y, t_game *game)
 		|| game->map2[x][y] == '1' || game->map2[x][y] == 'E'
 		|| game->map2[x][y] == 'V')
 		return ;
+	if (game->map2[x][y] == 'P')
+		game->map2[x][y] = 'V';
 	if (game->map2[x][y] != 'P')
 		game->map2[x][y] = 'V';
 	ft_flood_fill(x - 1, y, game);
@@ -56,12 +58,12 @@ void	ft_check_e(t_game *game)
 				if (game->map2[i + 1][j] != 'V' && game->map2[i - 1][j] != 'V'
 					&& game->map2[i][j + 1] != 'V' && game->map2[i][j
 					- 1] != 'V')
-					error_msg("Can't Reach The Exit");
+					error_map2("Can't Reach The Exit", game);
 			}
 			if (game->map2[i][j] == 'C')
-				error_msg("Can't Reach The Coins");
+				error_map2("Can't Reach The Coins", game);
 			if (game->map2[i][j] == 'T')
-				error_msg("Can't Reach The Enemy");
+				error_map2("Can't Reach The Enemy", game);
 			j++;
 		}
 		i++;

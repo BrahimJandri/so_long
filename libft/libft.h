@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
@@ -61,6 +60,5 @@ char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(const char *str);
 char	*ft_strrchr(const char *str, int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
-
 
 #endif

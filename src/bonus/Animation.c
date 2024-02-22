@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:48:07 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/19 17:37:13 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/22 10:52:49 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ char	*animations_enemy(t_game *game)
 	static int	i = 0;
 	char		*img;
 
-	if (i < 100)
+	if (i < 90)
 	{
 		img = ENEMY_1;
 	}
-	else if (i < 150)
+	else if (i < 110)
 	{
 		img = ENEMY_2;
 	}

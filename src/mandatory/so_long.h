@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:55:31 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 13:30:12 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:20:11 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,12 @@ void		move_player(int keycode, t_game *game);
 void		move_direction(t_game *game, int x, int y, char *img);
 void		ft_put_img(int i, int j, char *img, t_game *game);
 void		free_all(t_game *game);
-void		can_reach(int x, int y, t_game *game);
-void		fill_visited(t_game *game);
-int			is_valid(int x, int y, t_game *game);
-void		is_recheable(t_game *game);
-int			ft_exit(void);
+int			ft_exit(t_game *game);
 void		map_dup(t_game *game);
 void		ft_flood_fill(int x, int y, t_game *game);
 void		ft_check_e(t_game *game);
+void		error_map(char *msg, t_game *game);
+void		error_map2(char *msg, t_game *game);
 
 char		*get_next_line(int fd);
 int			ft_strllen(char *str);

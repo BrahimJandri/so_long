@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:00:02 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/15 11:38:49 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/22 11:17:38 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void	ft_fill_map(t_game *game, int fd)
 
 	i = 0;
 	game->map = malloc(sizeof(char *) * (game->map_x + 1));
+	if (!game->map)
+		error_msg("Memory allocation error");
 	while (i < game->map_x)
 	{
 		line = get_next_line(fd);
@@ -79,6 +81,4 @@ void	ft_read_map(t_game *game, char *argv)
 	ft_fill_map(game, fd);
 	close(fd);
 	free(temp);
-	if (!game->map)
-		error_msg("Memory allocation error");
 }

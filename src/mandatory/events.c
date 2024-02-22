@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 11:14:50 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/19 13:23:48 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/20 21:31:45 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	move_game(int keycode, t_game *game)
 	{
 		mlx_destroy_window(game->mlx, game->win);
 		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		free_all(game);
 		ft_printf("Unfortunately You Exit The Game  ❌❌\n");
 		exit(1);
 	}
@@ -61,8 +63,12 @@ void	move_direction(t_game *game, int x, int y, char *img)
 	{
 		if (game->coins_c == game->count_coins)
 		{
+			game->moves++;
+			ft_printf("Moves : %d\n", game->moves);
 			mlx_destroy_window(game->mlx, game->win);
 			mlx_destroy_display(game->mlx);
+			free(game->mlx);
+			free_all(game);
 			ft_printf("Congratulation You Win! 🥉 🏆 🎉\n");
 			exit(1);
 		}

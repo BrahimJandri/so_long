@@ -6,7 +6,7 @@
 /*   By: bjandri <bjandri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:30:35 by bjandri           #+#    #+#             */
-/*   Updated: 2024/02/17 14:53:55 by bjandri          ###   ########.fr       */
+/*   Updated: 2024/02/20 09:21:24 by bjandri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ void	free_all(t_game *game)
 		i++;
 	}
 	free(game->map);
-	free(game);
 	free(game->map2);
 }
 
-int	ft_exit(void)
+int	ft_exit(t_game *game)
 {
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	free_all(game);
 	ft_printf("Unfortunately You Exit The Game 👎 ❌\n");
 	exit(1);
 	return (0);
